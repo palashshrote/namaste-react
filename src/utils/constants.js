@@ -3,9 +3,19 @@ export const cloudinaryBaseApi = "https://media-assets.swiggy.com/swiggy/image/u
 export const swiggyApi = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.1520844&lng=79.0886514&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
 
 export const swiggyApiLL = (lat,lng)=> {
-    if(lat == "21.1520844" && lng == "79.0886514") {
-        return `https://namastedev.com/api/v1/listRestaurants`;
-    } else return `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+    // if(lat == "21.1520844" && lng == "79.0886514") {
+    //     return `https://namastedev.com/api/v1/listRestaurants`;
+    // } else return `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
+    return `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`;
 }
 
 export const restaurantMenuApi = "https://namastedev.com/api/v1/listRestaurantMenu/";
+export const swiggyRestaurantMenuApiLL = (restId, lat, lng) => {
+    return `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=${lat}&lng=${lng}&restaurantId=${restId}&catalog_qa=undefined&submitAction=ENTER`;
+}
+// export const swiggyRestaurantMenuApiLL= 
+//         'https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1520844&lng=79.0886514&restaurantId=305822&catalog_qa=undefined&submitAction=ENTER';
+
+
+// restaurant menu api
+//  https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=21.1391029&lng=79.0963245&restaurantId=305822&catalog_qa=undefined&submitAction=ENTER

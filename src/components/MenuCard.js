@@ -1,5 +1,6 @@
 import MenuItem from "../components/MenuItem";
 
+
 const MenuCard = ({ groupedCards }) => {
     return (
         <div className="res-menu">

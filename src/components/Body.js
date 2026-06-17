@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useOutletContext} from "react-router";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "../components/Shimmer";
 import useRestaurantList from "../utils/useRestaurantList";
 const Body = () => {
@@ -9,6 +9,7 @@ const Body = () => {
     const [searchText, setSearchText] = useState("");
     const [geoPosition, setGeoPosition] = useState("21.1520844,79.0886514");
     const {RestaurantList, setRestaurantList, filteredRestaurantList, setFilteredRestaurantList} = useRestaurantList(geoPosition,setIsLoading);
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
     
     if(!networkConnection) return <h1>🔴Offline</h1>
     return (
@@ -30,7 +31,8 @@ const Body = () => {
                     
                     <div className="res-container flex flex-wrap">
                         {filteredRestaurantList.map((res) => {
-                            return <RestaurantCard resData={res} key={res.info.id} />;
+                            if(res.info.id > 454545) return <RestaurantCardPromoted resData={res} key={res.info.id} geoPosition={geoPosition}/>
+                            else return <RestaurantCard resData={res} key={res.info.id} geoPosition={geoPosition}/>;
                         })}
                     </div>
                 </div>

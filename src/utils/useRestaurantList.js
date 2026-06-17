@@ -17,7 +17,9 @@ const useRestaurantList = (geoPosition, setIsLoading) => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            const restaurantData = data?.data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            // const restaurantData = data?.data?.cards;
+            const restaurantData = data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+            // console.log(restaurantData);
             setRestaurantList(restaurantData);
             setFilteredRestaurantList(restaurantData);
         } catch (error) {
