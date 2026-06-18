@@ -3,10 +3,10 @@ import MenuAccordian from "./MenuAccordian";
 const SwiggyMenuCard = ({ itemCategory, nestedItemCategory }) => {
     // console.log('itemCategory', itemCategory);
     return (
-        <div className="w-[60%] mx-auto">
+        <div className="w-[60%] mx-auto my-4 bg-gray-50 shadow-xl">
             {itemCategory?.map((item, i) => (
 
-                <MenuAccordian key={item.card.card.id} title={item.card.card.title} menuList={item.card.card.itemCards} />
+                <MenuAccordian key={item.card.card.categoryId} title={item.card.card.title} menuList={item.card.card.itemCards} />
                 // <div key={item.card.card.title}>
                 //     <div className="flex justify-between w-full">
                 //         <h2 className="text-xl">{item.card.card.title}</h2>
@@ -31,7 +31,7 @@ const SwiggyMenuCard = ({ itemCategory, nestedItemCategory }) => {
             {nestedItemCategory?.map((item, i) => (
                 <div key={item.card.card.id}>
                     {item?.card.card.categories.map((category) =>
-                        (<MenuAccordian key={item.card.card.id} title={item.card.card.title} menuList={category.itemCards} categoryTitle={category.title}/>)
+                        (<MenuAccordian key={category.categoryId} title={item.card.card.title} menuList={category.itemCards} categoryTitle={category.title}/>)
                     )}
                 </div>
             ))}
