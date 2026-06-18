@@ -2,15 +2,17 @@ import React, { useState } from 'react'
 
 import { cloudinaryBaseApi } from "../utils/constants";
 
-export default function MenuAccordian({ title, menuList, categoryTitle }) {
-    const [cardExpanded, setCardExpanded] = useState(true);
+export default function MenuAccordian({ title, menuList, categoryTitle, showItems, setShowIndex }) {
+    const handleOnClick =()=> {
+        setShowIndex();
+    }
     return (
         <div key={title}>
-            <div  onClick={() => setCardExpanded((val) => !val)} className="flex justify-between w-full border-gray-200  shadow-md p-4">
-                <h2 className="text-xl font-bold">{categoryTitle === undefined ? title : categoryTitle}</h2>
-                <button>{cardExpanded ? "-" : "+"}</button>
+            <div onClick={handleOnClick} className="flex justify-between w-full border-gray-200  shadow-md p-4">
+                <h2 className="text-xl font-bold">{categoryTitle === undefined ? title + `(${title.length})`  : categoryTitle + `(${categoryTitle.length})`}</h2>
+                <button>{showItems ? "-" : "+"}</button>
             </div>
-            {cardExpanded && <div className="mb-10">
+            {showItems && <div className="mb-10">
                 {menuList.map((item) =>
                     <div className="flex justify-between m-4 bg-gray-100 p-4 rounded" key={item.card.info.id}>
                         <div className="text-left mr-4 w-9/12">

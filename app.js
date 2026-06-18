@@ -1,25 +1,39 @@
 import "./index.css";
-import React from "react";
+import React, { lazy, useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./src/components/Header";
 import Footer from "./src/components/Footer";
 import Body from "./src/components/Body";
-import About from "./src/components/About";
-import Contact from "./src/components/Contact";
-import Cart from "./src/components/Cart";
+// import About from "./src/components/About";
+// import Contact from "./src/components/Contact";
+// import Cart from "./src/components/Cart";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 import useNetworkConnection from "./src/utils/useNetworkConnection";
+import UserContext from "./src/utils/UserContext";
 
+const About = lazy(() => import("./src/components/About"));
+const Contact = lazy(() => import("./src/components/Contact"));
+const Cart = lazy(() => import("./src/components/Cart"));
 const AppLayout = () => {
-    const {networkConnection} = useNetworkConnection();
+    const { networkConnection } = useNetworkConnection();
+    const [loggedInUser, setLoggedInUser] = useState(null);
+    const [newUser, setNewUser] = useState("");
+    // const changeLoggedInUser = () => {
+    //     setNewUser(loggedInUser);
+    // }
+    // const inputFunction = (e) => {
+    //     setLoggedInUser(e.target.value);
+    // }
     return (
-        <div className="app">
-            <Header networkConnection={networkConnection}/>
-            <Outlet context={[networkConnection]}/>
-            <Footer />
-        </div>
+        <UserContext.Provider value={{ userName: newUser, setNewUser }}>
+            <div className="app">
+                <Header networkConnection={networkConnection} />
+                <Outlet context={{networkConnection}} />
+                <Footer />
+            </div>
+        </UserContext.Provider>
     );
 }
 
