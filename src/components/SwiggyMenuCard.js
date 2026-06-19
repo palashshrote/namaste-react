@@ -10,13 +10,13 @@ const SwiggyMenuCard = ({ itemCategory, nestedItemCategory }) => {
                 
             ))}
 
-            {nestedItemCategory?.map((item, i) => (
+            {/* {nestedItemCategory?.map((item, i) => (
                 <div key={item.card.card.categoryId}>
                     {item?.card.card.categories.map((category) =>
                         (<MenuAccordian key={category.categoryId} title={item.card.card.title} menuList={category.itemCards} categoryTitle={category.title} showItems={category.categoryId === showIndex} setShowIndex={() => setShowIndex(category.categoryId === showIndex ? null : category.categoryId)} />)
                     )}
                 </div>
-            ))}
+            ))} */}
         </div>
     );
 }

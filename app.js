@@ -4,9 +4,8 @@ import ReactDOM from "react-dom/client";
 import Header from "./src/components/Header";
 import Footer from "./src/components/Footer";
 import Body from "./src/components/Body";
-// import About from "./src/components/About";
-// import Contact from "./src/components/Contact";
-// import Cart from "./src/components/Cart";
+import { Provider } from "react-redux"
+import store from "./src/utils/appStore";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
@@ -20,20 +19,17 @@ const AppLayout = () => {
     const { networkConnection } = useNetworkConnection();
     const [loggedInUser, setLoggedInUser] = useState(null);
     const [newUser, setNewUser] = useState("");
-    // const changeLoggedInUser = () => {
-    //     setNewUser(loggedInUser);
-    // }
-    // const inputFunction = (e) => {
-    //     setLoggedInUser(e.target.value);
-    // }
+
     return (
-        <UserContext.Provider value={{ userName: newUser, setNewUser }}>
-            <div className="app">
-                <Header networkConnection={networkConnection} />
-                <Outlet context={{networkConnection}} />
-                <Footer />
-            </div>
-        </UserContext.Provider>
+        <Provider store={store}>
+            <UserContext.Provider value={{ userName: newUser, setNewUser }}>
+                <div className="app">
+                    <Header networkConnection={networkConnection} />
+                    <Outlet context={{ networkConnection }} />
+                    <Footer />
+                </div>
+            </UserContext.Provider>
+        </Provider>
     );
 }
 

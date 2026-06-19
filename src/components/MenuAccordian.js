@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
-
+import {useDispatch} from "react-redux";
+import {addItem} from "../utils/cartSlice";
 import { cloudinaryBaseApi } from "../utils/constants";
 
 export default function MenuAccordian({ title, menuList, categoryTitle, showItems, setShowIndex }) {
+    const dispatch = useDispatch();
     const handleOnClick =()=> {
         setShowIndex();
+    }
+    const handleAddItem =(item)=> {
+        dispatch(addItem(item));
     }
     return (
         <div key={title}>
@@ -23,7 +28,7 @@ export default function MenuAccordian({ title, menuList, categoryTitle, showItem
                         </div>
                         <div>
                             <div className="absolute">
-                                <button className="bg-white p-1 rounded mx-11 my-25">Add +</button>
+                                <button onClick={()=>handleAddItem(item)} className="bg-white p-1 rounded mx-11 my-25">Add +</button>
                             </div>
                             <img className="h-30 w-35 rounded" src={cloudinaryBaseApi + item.card.info.imageId} />
                             
