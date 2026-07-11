@@ -14,6 +14,7 @@ const Body = () => {
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
     
     if (!networkConnection) return <h1>🔴Offline</h1>
+    console.log(filteredRestaurantList);
     
     return (
         isLoading ? (<Shimmer />) :
